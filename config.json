@@ -1,6 +1,6 @@
 {
     "model": "Tacotron2",
-    "run_name": "ljspeech",
+    "run_name": "quran",
     "run_description": "tacotron2",
 
     // AUDIO PARAMETERS
@@ -13,7 +13,7 @@
         "frame_shift_ms": null,  // stft window hop-lengh in ms. If null, 'hop_length' is used.
 
         // Audio processing parameters
-        "sample_rate": 22050,   // DATASET-RELATED: wav sample-rate. If different than the original data, it is resampled.
+        "sample_rate": 16000,   // DATASET-RELATED: wav sample-rate. If different than the original data, it is resampled.
         "preemphasis": 0.0,     // pre-emphasis to reduce spec noise and make it more structured. If 0.0, no -pre-emphasis.
         "ref_level_db": 20,     // reference level db, theoretically 20db is the sound of air.
 
@@ -111,14 +111,14 @@
     // DATA LOADING
     "text_cleaner": "phoneme_cleaners",
     "enable_eos_bos_chars": false, // enable/disable beginning of sentence and end of sentence chars.
-    "num_loader_workers": 4,        // number of training data loader processes. Don't set it too big. 4-8 are good values.
-    "num_val_loader_workers": 4,    // number of evaluation data loader processes.
+    "num_loader_workers": 8,        // number of training data loader processes. Don't set it too big. 4-8 are good values.
+    "num_val_loader_workers": 8,    // number of evaluation data loader processes.
     "batch_group_size": 0,  //Number of batches to shuffle after bucketing.
-    "min_seq_len": 6,       // DATASET-RELATED: minimum text length to use in training
-    "max_seq_len": 153,     // DATASET-RELATED: maximum text length
+    "min_seq_len": 2,       // DATASET-RELATED: minimum text length to use in training
+    "max_seq_len": 179,     // DATASET-RELATED: maximum text length
 
     // PATHS
-    "output_path": "/home/erogol/Models/LJSpeech/",
+    "output_path": "models/quran",
 
     // PHONEMES
     "phoneme_cache_path": "/media/erogol/data_ssd2/mozilla_us_phonemes_3",  // phoneme computation is slow, therefore, it caches results in the given folder.
@@ -134,10 +134,10 @@
     "datasets":   // List of datasets. They all merged and they get different speaker_ids.
         [
             {
-                "name": "ljspeech",
-                "path": "/home/erogol/Data/LJSpeech-1.1/",
-                "meta_file_train": "metadata.csv",
-                "meta_file_val": null
+                "name": "Quran",
+                "path": "datasets/",
+                "meta_file_train": "quran_train.csv",
+                "meta_file_val": "quran_test.csv"
             }
         ]
 

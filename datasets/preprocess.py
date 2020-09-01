@@ -205,3 +205,16 @@ def custom_turkish(root_path, meta_file):
             items.append([text, wav_file, speaker_name])
     print(f" [!] {len(skipped_files)} files skipped. They don't exist...")
     return items
+
+
+def quran(root_path, meta_file):
+    txt_file = os.path.join(root_path, meta_file)
+    items = []
+    speaker_name = "Husary"
+    with open(txt_file, 'r', encoding='utf-8') as ttf:
+        for line in ttf:
+            cols = line.split(',')
+            wav_file = os.path.join(root_path, cols[1].strip())
+            text = cols[0].strip()
+            items.append([text, wav_file, speaker_name])
+    return items
